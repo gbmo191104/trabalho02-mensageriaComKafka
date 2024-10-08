@@ -13,9 +13,8 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Properties;
 import java.awt.*;
-import javax.swing.border.EmptyBorder;
 
-public class NotificationUI extends JFrame {
+public class InterfaceDeNotificacoes extends JFrame {
     private JTextArea notificationDisplayArea;
     private JTextField messageInputField;
     private JRadioButton priorityHighRadio;
@@ -25,7 +24,7 @@ public class NotificationUI extends JFrame {
     private KafkaProducer<String, String> kafkaProducer;
     private List<String> lowPriorityBatch = new ArrayList<>();
 
-    public NotificationUI() {
+    public InterfaceDeNotificacoes() {
         setTitle("Sistema de Notificações Acadêmicas");
         setSize(800, 600);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -185,7 +184,7 @@ public class NotificationUI extends JFrame {
                 @Override
                 public void onCompletion(RecordMetadata metadata, Exception exception) {
                     if (exception != null) {
-                        JOptionPane.showMessageDialog(NotificationUI.this,
+                        JOptionPane.showMessageDialog(InterfaceDeNotificacoes.this,
                                 "Erro ao enviar a notificação: " + exception.getMessage(),
                                 "Erro",
                                 JOptionPane.ERROR_MESSAGE);
@@ -204,7 +203,7 @@ public class NotificationUI extends JFrame {
                     @Override
                     public void onCompletion(RecordMetadata metadata, Exception exception) {
                         if (exception != null) {
-                            JOptionPane.showMessageDialog(NotificationUI.this,
+                            JOptionPane.showMessageDialog(InterfaceDeNotificacoes.this,
                                     "Erro ao enviar o lote de notificações: " + exception.getMessage(),
                                     "Erro",
                                     JOptionPane.ERROR_MESSAGE);
@@ -236,6 +235,6 @@ public class NotificationUI extends JFrame {
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(NotificationUI::new);
+        SwingUtilities.invokeLater(InterfaceDeNotificacoes::new);
     }
 }
